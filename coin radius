@@ -1,0 +1,23 @@
+a  = imread('coins.png');
+
+b = imbinarize(a);
+imshow(b);
+
+%measuring
+h = imdistline(gca);
+api =iptgetapi(h);
+
+%
+pause();
+%
+dist =api.getDistance();
+u = menu('Choose measuring unit','Pixels','Centim','Meters');
+if (u==1)
+    fprintf('The length of the object is: %0.2f Pixels\n',dist);
+elseif (u==2)
+    dist_cm = dist*0.2645;
+    fprintf('The length of the object is: %0.2f Centim\n',dist_cm);
+else
+    dist_m = (dist*0.2645)/100;
+    fprintf('The length of the object is: %0.2f Meters\n',dist_m);
+end
